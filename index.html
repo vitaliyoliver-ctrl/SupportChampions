@@ -485,6 +485,206 @@
     .section-header { font-size: 14px; padding: 14px 12px; }
     .sales-table td { font-size: 12px; padding: 10px 8px; }
   }
+
+  /* ─── CSAT Formula Block ─── */
+  .csat-formula-block {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.5s ease-out both;
+  }
+  .csat-formula-eq {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 14px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .formula-op {
+    color: var(--text-muted);
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .formula-part {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+  .formula-csat  { background: rgba(0,229,255,0.1);  color: var(--accent-cyan);   border: 1px solid rgba(0,229,255,0.2); }
+  .formula-avg   { background: rgba(168,85,247,0.1); color: var(--accent-purple); border: 1px solid rgba(168,85,247,0.2); }
+  .formula-first { background: rgba(255,215,0,0.1);  color: var(--gold);          border: 1px solid rgba(255,215,0,0.2); }
+  .csat-formula-weights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .weight-pill {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .weight-csat  { background: rgba(0,229,255,0.12);  color: var(--accent-cyan); }
+  .weight-avg   { background: rgba(168,85,247,0.12); color: var(--accent-purple); }
+  .weight-first { background: rgba(255,215,0,0.12);  color: var(--gold); }
+  .csat-calc-btn {
+    background: linear-gradient(135deg, rgba(0,229,255,0.15), rgba(168,85,247,0.15));
+    border: 1px solid rgba(0,229,255,0.3);
+    color: var(--accent-cyan);
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .csat-calc-btn:hover {
+    background: linear-gradient(135deg, rgba(0,229,255,0.25), rgba(168,85,247,0.25));
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 12px rgba(0,229,255,0.2);
+  }
+
+  /* ─── Calculator Modal ─── */
+  .calc-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+  }
+  .calc-modal-overlay.active { display: flex; }
+  .calc-modal {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 28px;
+    width: 100%;
+    max-width: 420px;
+    margin: 20px;
+    box-shadow: 0 0 40px rgba(0,229,255,0.1), 0 20px 60px rgba(0,0,0,0.6);
+    animation: fadeUp 0.3s ease-out;
+  }
+  .calc-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .calc-modal-header span {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+  }
+  .calc-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.2s;
+  }
+  .calc-close-btn:hover { color: var(--text-primary); }
+  .calc-inputs { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+  .calc-input-group label {
+    display: block;
+    font-size: 11px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+  .calc-input-group input {
+    width: 100%;
+    background: var(--bg-row);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .calc-input-group input:focus { border-color: var(--accent-cyan); }
+  .calc-run-btn {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(0,229,255,0.2), rgba(168,85,247,0.2));
+    border: 1px solid rgba(0,229,255,0.4);
+    color: var(--accent-cyan);
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+  }
+  .calc-run-btn:hover {
+    background: linear-gradient(135deg, rgba(0,229,255,0.3), rgba(168,85,247,0.3));
+    box-shadow: 0 0 16px rgba(0,229,255,0.2);
+  }
+  .calc-result {
+    background: var(--bg-row);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .calc-result-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .calc-result-value {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+  }
+  .calc-result-breakdown {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .calc-result-breakdown span {
+    background: rgba(255,255,255,0.04);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
 </style>
 </head>
 <body>
@@ -505,6 +705,24 @@
 
   <!-- ==================== РЕЖИМ: ЧЕМПИОНАТ ==================== -->
   <div id="mode-championship" class="mode-section active">
+
+    <!-- Формула чемпионского балла -->
+    <div class="csat-formula-block">
+      <div class="legend-formula-title">💡 Как считается Чемпионский балл</div>
+      <div class="csat-formula-eq">
+        <span class="formula-part formula-csat">(КСАТ / 77%) × 60%</span>
+        <span class="formula-op">+</span>
+        <span class="formula-part formula-avg">(1 + (60 − Среднее) / 60) × 25%</span>
+        <span class="formula-op">+</span>
+        <span class="formula-part formula-first">(1 + (20 − Принятие) / 20) × 15%</span>
+      </div>
+      <div class="csat-formula-weights">
+        <span class="weight-pill weight-csat">КСАТ — 60%</span>
+        <span class="weight-pill weight-avg">Среднее время ответа — 25%</span>
+        <span class="weight-pill weight-first">Принятие — 15%</span>
+      </div>
+      <button class="csat-calc-btn" onclick="openCalc()">🧮 Калькулятор чемпионского балла</button>
+    </div>
 
     <div class="tabs">
       <div class="tab" onclick="switchTab('dec')">Декабрь 2025</div>
@@ -1054,7 +1272,69 @@
 
 </div>
 
+<!-- ==================== КАЛЬКУЛЯТОР ЧЕМПИОНСКОГО БАЛЛА ==================== -->
+<div id="calc-modal-overlay" class="calc-modal-overlay" onclick="closeCalcOutside(event)">
+  <div class="calc-modal">
+    <div class="calc-modal-header">
+      <span>🧮 Калькулятор</span>
+      <button class="calc-close-btn" onclick="closeCalc()">✕</button>
+    </div>
+    <div class="calc-inputs">
+      <div class="calc-input-group">
+        <label>КСАТ (%)</label>
+        <input type="number" id="calc-csat" placeholder="напр. 86.5" min="0" max="100" step="0.1">
+      </div>
+      <div class="calc-input-group">
+        <label>Принятие — время первого ответа (мин)</label>
+        <input type="number" id="calc-first" placeholder="напр. 4" min="0" step="0.1">
+      </div>
+      <div class="calc-input-group">
+        <label>Среднее — время между ответами (мин)</label>
+        <input type="number" id="calc-avg" placeholder="напр. 26" min="0" step="0.1">
+      </div>
+    </div>
+    <button class="calc-run-btn" onclick="calcChampScore()">Рассчитать</button>
+    <div id="calc-result" class="calc-result" style="display:none"></div>
+  </div>
+</div>
+
 <script>
+// ─── CSAT Calculator ───
+function openCalc() {
+  document.getElementById('calc-modal-overlay').classList.add('active');
+}
+function closeCalc() {
+  document.getElementById('calc-modal-overlay').classList.remove('active');
+}
+function closeCalcOutside(e) {
+  if (e.target === document.getElementById('calc-modal-overlay')) closeCalc();
+}
+function calcChampScore() {
+  const csat  = parseFloat(document.getElementById('calc-csat').value);
+  const first = parseFloat(document.getElementById('calc-first').value);
+  const avg   = parseFloat(document.getElementById('calc-avg').value);
+  const resultEl = document.getElementById('calc-result');
+  resultEl.style.display = 'block';
+  if (isNaN(csat) || isNaN(first) || isNaN(avg)) {
+    resultEl.innerHTML = '<span style="color:var(--accent-red);font-family:\'Nunito\',sans-serif;font-size:13px;">Пожалуйста, заполните все поля</span>';
+    return;
+  }
+  const csatDec = csat / 100;
+  const sCsat  = (csatDec / 0.77) * 0.60;
+  const sAvg   = (1 + (60 - avg) / 60) * 0.25;
+  const sFirst = (1 + (20 - first) / 20) * 0.15;
+  const score  = sCsat + sAvg + sFirst;
+  resultEl.innerHTML = `
+    <div class="calc-result-label">Чемпионский балл</div>
+    <div class="calc-result-value">${score.toFixed(9)}</div>
+    <div class="calc-result-breakdown">
+      <span>КСАТ: +${sCsat.toFixed(4)}</span>
+      <span>Среднее: +${sAvg.toFixed(4)}</span>
+      <span>Принятие: +${sFirst.toFixed(4)}</span>
+    </div>
+  `;
+}
+
 // ─── Championship tabs ───
 function switchTab(month) {
   document.querySelectorAll('#mode-championship .tab').forEach(t => t.classList.remove('active'));
@@ -1085,7 +1365,6 @@ function switchSalesTab(month) {
 }
 
 // ─── Color tiers ───
-// % продаж к тоталу (p_st): <=1 red, 1-2.5 orange, 2.5-3.5 yellow, 3.5-4 lime, 4+ green
 function stColor(v) {
   if (v <= 1)   return '#EF4444';
   if (v <= 2.5) return '#F97316';
@@ -1094,7 +1373,6 @@ function stColor(v) {
   return '#22C55E';
 }
 
-// % предпрод к тоталу (p_pt): <=5 red, 5-10 orange, 10-18 yellow, 18-25 lime, 25+ green
 function ptColor(v) {
   if (v <= 5)   return '#EF4444';
   if (v <= 10)  return '#F97316';
@@ -1214,18 +1492,11 @@ function renderSalesTable(month) {
   }
 
   const { col, dir } = sortState[month];
-  // Фильтруем строки без имени
   const filtered = data.filter(r => r.name && r.name !== '—' && r.name.trim() !== '');
-  // Default sort base is always bonus for rank icons
   const byBonus = [...filtered].sort((a, b) => b.bonus - a.bonus || b.sales - a.sales);
   const rankMap = {};
   byBonus.forEach((r, i) => { rankMap[r.name] = i + 1; });
 
-  const sorted = col === 'rank'
-    ? byBonus.slice().reverse().slice().reverse() // rank = bonus order
-    : sortData(data, col, dir);
-
-  // if sorting by rank desc = default bonus order
   const displayData = (col === 'rank' && dir === -1) ? byBonus : sortData(filtered, col, dir);
 
   let html = '';
@@ -1258,7 +1529,7 @@ function renderSalesTable(month) {
 
 function updateSortHeaders(month) {
   const { col, dir } = sortState[month];
-  const table = document.getElementById('stab-' + month + ' table') || document.querySelector(`#stab-${month} table`);
+  const table = document.querySelector(`#stab-${month} table`);
   if (!table) return;
   table.querySelectorAll('thead th').forEach((th, i) => {
     const key = COL_KEYS[i];
